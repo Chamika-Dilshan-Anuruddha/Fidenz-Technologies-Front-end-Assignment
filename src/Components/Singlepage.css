@@ -1,0 +1,239 @@
+.AppSingle{
+    background-color: #1e2027;
+    min-width: 200px;  /* minimum width of the application page can have */
+    min-height: 95vh;  
+}
+
+.containerSingle{
+    background-image: url(../Img/backgroundImg.png);
+    width: 100%;
+    background-size: 100% 90%; 
+    background-repeat: no-repeat; 
+ 
+}
+
+.single-main-container{
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5%;
+}
+
+.single-card{
+    width: 80%;  
+    max-width: 1000px;
+    border-Radius: 15px;
+}
+
+
+.card-img-Colombo{
+    background-image: url(../Img/Colombo.jpg);
+    background-size: cover;
+    background-position:center;
+}
+.card-img-Tokyo{
+    background-image: url(../Img/Tokyo.jpg);
+    background-size: cover;
+    background-position:center;
+}.card-img-Liverpool{
+    background-image: url(../Img/Liverpool.jpg);
+    background-size: cover;
+    background-position:center;
+}.card-img-Paris{
+    background-image: url(../Img/Paris.jpg);
+    background-size: cover;
+    background-position:center;
+}.card-img-Sydney{
+    background-image: url(../Img/Sydney.jpg);
+    background-size: cover;
+    background-position:center;
+}.card-img-Boston{
+    background-image: url(../Img/Boston.jpg);
+    background-size: cover;
+    background-position:center;
+}.card-img-Shanghai{
+    background-image: url(../Img/Shanghai.jpg);
+    background-size: cover;
+    background-position:center;
+}.card-img-Oslo{
+    background-image: url(../Img/Oslo.jpg);
+    background-size: cover;
+    background-position:center;
+}
+
+
+.single-inside-text{
+    text-align: center;
+    color: white;
+    font-size: medium;
+}
+
+.single-fotter-style{
+    background-color:#383b47;
+    color: white;
+    font-size:medium;
+    padding: 4% 4%;  
+}
+
+.single-line{
+    border-right: 1px solid white;
+}
+
+.Top-single-line{
+    border-right: 1px solid white;
+}
+
+
+.sun-details{
+    padding-left: 5%;
+}
+
+.weather-icon{
+    width: 120px;
+    height: 120px;
+}
+
+.back-button{
+    position: relative;
+    left: -45%;
+}
+
+.city-name{
+    position:relative;
+    top:-15%;
+    font-size: 40px;
+}
+
+
+
+
+
+/*media quries  */
+
+@media (max-width: 329px) {
+
+    .single-fotter-style{     
+        padding-top: 8%;
+        font-size:6px;
+    }
+
+    .single-inside-text{
+        font-size: x-small;
+        white-space: nowrap;
+
+    }
+
+    h1{
+        font-size: 32px;
+    }
+
+    .city-name{
+        font-size: 20px;
+    }
+
+    .Top-single-line{
+        border: none;
+    }
+
+    .back-button{
+        position: relative;
+        left: -48%;
+        top: -12%;
+    }
+
+    .single-card{
+        margin: 5%;
+    }
+    
+}
+
+
+@media (min-width: 328px) and (max-width: 400px) {
+
+    .single-fotter-style{
+       
+        font-size:7px;
+        padding-top: 6%;
+
+    }
+
+    .single-inside-text{
+        font-size: x-small;
+        white-space: nowrap;
+
+    }
+
+    h1{
+        font-size: 30px;
+    }
+
+    .city-name{
+     
+        font-size: 20px;
+    }
+     
+}
+
+
+@media (min-width: 400px) and (max-width: 540px) {
+
+    .single-fotter-style{
+       
+        font-size:x-small;
+    }
+
+    .single-inside-text{
+        font-size: small;
+    }
+
+    h1{
+        font-size: 30px;
+    }
+
+    .city-name{
+     
+        font-size: 20px;
+    }
+     
+}
+
+
+
+@media (min-width: 400px) and (max-width: 540px) {
+
+    .single-fotter-style{
+       
+        font-size:9px;
+    }
+
+    
+}
+
+@media (min-width: 540px) and (max-width: 700px) {
+
+    .single-fotter-style{
+       
+        font-size:small;
+    }
+
+    .single-inside-text{
+        font-size: small;
+    }
+    .city-name{
+     
+        font-size: 30px;
+    }
+
+    h1{
+        font-size: 30px;
+    }
+    
+}
+
+@media (min-width: 1030px) {
+
+    h1{
+        font-size: 60px;
+    }
+    
+}
