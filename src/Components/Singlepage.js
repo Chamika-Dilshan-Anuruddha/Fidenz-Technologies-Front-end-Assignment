@@ -27,20 +27,20 @@ export default function Singlepage() {
 
                 <div className='single-main-container'> 
 
-                    <Card className={`single-card card-img-${data.cname}`}> 
+                    <Card className={`single-card card-img-${data.cname}`} > 
                             
-                            <Card.Body>
+                            <Card.Body className='card-body-single'>
                                 <Row>
                                     <Col className="single-inside-text">
                                         <Button className='back-button' variant="link" onClick={() => navigate(-1)}><FontAwesomeIcon icon={faArrowLeft} style={{color: "#ffffff"}} /></Button>
                                         <h2 className='city-name' >{data.cname},{data.ccountry}</h2>
-                                        <p className='dt-style'>{data.cdt}</p>
+                                        <p className='dt-style-single'>{data.cdt}</p>
                                     </Col>
                                     
 
                                 </Row>
-                                <Row>
-                                    <Col className="single-inside-text Top-single-line weather-icon-container">
+                                <Row className='second-raw'>
+                                    <Col className="single-inside-text Top-single-line">
                                     
                                     <img className='weather-icon' src={data.curl} alt='weather icon' />
                                     <p>{data.cdesc}</p>
@@ -57,7 +57,7 @@ export default function Singlepage() {
                                 
                             </Card.Body>
 
-                            <Card.Footer className="single-fotter-style" style={{ borderRadius: '15px', borderBottom:'2px solid white' }} >
+                            <Card.Footer className="single-fotter-style" style={{ borderRadius: '15px', borderBottom:'2px solid white' }}  >
                                    <Row>
                                         <Col className="single-line">
                                         <p>Pressure: {data.cpressure}</p>

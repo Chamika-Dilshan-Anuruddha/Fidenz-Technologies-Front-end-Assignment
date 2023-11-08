@@ -25,6 +25,71 @@
     border-Radius: 15px;
 }
 
+.card-body-single{
+    height: 300px;
+}
+
+
+.single-inside-text{
+    text-align: center;
+    color: white;
+    font-size: medium;
+}
+
+.single-fotter-style{
+    background-color:#383b47;
+    color: white;
+    font-size:small;
+    padding: 2% 5%;  
+    height: 130px;
+   
+}
+
+.single-line{
+    border-right: 1px solid white;
+    
+}
+
+.Top-single-line{
+    border-right: 2px solid white;
+}
+
+
+.sun-details{
+    padding-left: 9%;
+}
+
+.weather-icon{
+    width: 120px;
+    height: 120px;
+}
+
+.back-button{
+    position: relative;
+    left: -45%;
+}
+
+.city-name{
+    position:relative;
+    top:-30%;
+    font-size: 30px;
+}
+
+.dt-style-single{
+    position: relative;
+    top: -26%;
+}
+
+.second-raw{
+    position: relative;
+    top: -13%;
+ 
+}
+
+.second-raw h1{
+    font-size: 45px;
+}
+
 
 .card-img-Colombo{
     background-image: url(../Img/Colombo.jpg);
@@ -62,71 +127,28 @@
 }
 
 
-.single-inside-text{
-    text-align: center;
-    color: white;
-    font-size: medium;
-}
-
-.single-fotter-style{
-    background-color:#383b47;
-    color: white;
-    font-size:medium;
-    padding: 4% 4%;  
-}
-
-.single-line{
-    border-right: 1px solid white;
-}
-
-.Top-single-line{
-    border-right: 1px solid white;
-}
-
-
-.sun-details{
-    padding-left: 5%;
-}
-
-.weather-icon{
-    width: 120px;
-    height: 120px;
-}
-
-.back-button{
-    position: relative;
-    left: -45%;
-}
-
-.city-name{
-    position:relative;
-    top:-15%;
-    font-size: 40px;
-}
-
-
-
-
 
 /*media quries  */
 
-@media (max-width: 329px) {
+@media (max-width: 300px) {
 
-    .single-fotter-style{     
+    .single-fotter-style{ 
+        margin-top: 40px;    
         padding-top: 8%;
-        font-size:6px;
+        font-size:5px;
+        padding-bottom: 0px;
     }
 
     .single-inside-text{
         font-size: x-small;
         white-space: nowrap;
-
     }
 
-    h1{
-        font-size: 32px;
+    .second-raw h1{
+        font-size: 28px;
     }
-
+    
+    
     .city-name{
         font-size: 20px;
     }
@@ -136,19 +158,66 @@
     }
 
     .back-button{
-        position: relative;
         left: -48%;
-        top: -12%;
+        top: -15%;
     }
 
-    .single-card{
-        margin: 5%;
+    .weather-icon{
+        width: 100px;
+        height: 100px;
     }
-    
+ 
 }
 
 
-@media (min-width: 328px) and (max-width: 400px) {
+
+@media (min-width:300px) and (max-width: 390px) {
+
+    .single-fotter-style{
+       
+        font-size:6px;
+        padding-top: 6%;
+
+    }
+
+    .single-inside-text{
+        font-size: x-small;
+        white-space: nowrap;
+
+    }
+
+    .second-raw h1{
+        font-size: 30px;
+        position: relative;
+        top: 10%;
+        margin-bottom: 25px;
+    }
+    
+    .dt-style-single{   
+        top: -22%;
+        font-size: 12px;
+        margin-bottom: 30px;
+    }
+
+    .city-name{
+        font-size: 25px;
+    }
+
+    .back-button{
+        left: -48%;
+        top: -16%;
+    }
+
+    .weather-icon{
+        width: 90px;
+        height: 90px;
+    }
+ 
+     
+}
+
+
+@media (min-width:390px) and (max-width: 600px) {
 
     .single-fotter-style{
        
@@ -163,77 +232,24 @@
 
     }
 
-    h1{
+    .second-raw h1{
         font-size: 30px;
+        position: relative;
+        top: 17%;
+        margin-bottom: 30px;
+    }
+    
+    .dt-style-single{   
+        top: -22%;
+        font-size: 12px;
+        margin-bottom: 30px;
     }
 
     .city-name{
-     
-        font-size: 20px;
-    }
-     
-}
-
-
-@media (min-width: 400px) and (max-width: 540px) {
-
-    .single-fotter-style{
-       
-        font-size:x-small;
-    }
-
-    .single-inside-text{
-        font-size: small;
-    }
-
-    h1{
-        font-size: 30px;
-    }
-
-    .city-name{
-     
-        font-size: 20px;
+        font-size: 26px;
     }
      
 }
 
 
 
-@media (min-width: 400px) and (max-width: 540px) {
-
-    .single-fotter-style{
-       
-        font-size:9px;
-    }
-
-    
-}
-
-@media (min-width: 540px) and (max-width: 700px) {
-
-    .single-fotter-style{
-       
-        font-size:small;
-    }
-
-    .single-inside-text{
-        font-size: small;
-    }
-    .city-name{
-     
-        font-size: 30px;
-    }
-
-    h1{
-        font-size: 30px;
-    }
-    
-}
-
-@media (min-width: 1030px) {
-
-    h1{
-        font-size: 60px;
-    }
-    
-}
