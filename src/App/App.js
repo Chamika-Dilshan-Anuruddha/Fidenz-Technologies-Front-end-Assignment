@@ -1,6 +1,6 @@
 import Home from '../Pages/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Singlepage from '../Components/Singlepage';
+import Singlepage from '../Components/Singlepage/Singlepage';
 
 function App() {
   return (

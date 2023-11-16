@@ -9,7 +9,7 @@
 }
   
 .container-bg{
-    background-image: url(../Img/backgroundImg.png);
+    background-image: url(../Images/BackgroundImages/backgroundImg.png);
     width: 100%;
     background-size: 100%  auto; 
     background-repeat: no-repeat; 
@@ -54,43 +54,43 @@
 
 
 .card-color-1{
-   background-image: url(../Img/Colombo.jpg);
+   background-image: url(../Images/CardImages/Colombo.jpg);
    background-size: cover;
    background-position:center;
       
 }
 .card-color-2{
-   background-image: url(../Img/Tokyo.jpg);
+   background-image: url(../Images/CardImages/Tokyo.jpg);
    background-size: cover;
    background-position:center;
 }
 .card-color-3{
-   background-image: url(../Img/Liverpool.jpg);
+   background-image: url(../Images/CardImages/Liverpool.jpg);
    background-size: cover;
    background-position:center;
 }
 .card-color-4{
-   background-image: url(../Img/Paris.jpg);
+   background-image: url(../Images/CardImages/Paris.jpg);
    background-size: cover;
    background-position:center;
 }
 .card-color-5{
-   background-image: url(../Img/Sydney.jpg);
+   background-image: url(../Images/CardImages/Sydney.jpg);
    background-size: cover;
    background-position:center;
 }
 .card-color-6{
-   background-image: url(../Img/Boston.jpg);
+   background-image: url(../Images/CardImages/Boston.jpg);
    background-size: cover;
    background-position:center;
 }
 .card-color-7{
-    background-image: url(../Img/Shanghai.jpg);
+    background-image: url(../Images/CardImages/Shanghai.jpg);
     background-size: cover;
     background-position:center;
 }
 .card-color-8{
-    background-image: url(../Img/Oslo.jpg);
+    background-image: url(../Images/CardImages/Oslo.jpg);
     background-size: cover;
     background-position:center;
 }

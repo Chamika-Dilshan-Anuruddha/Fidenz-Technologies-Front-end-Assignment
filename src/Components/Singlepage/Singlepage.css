@@ -5,7 +5,7 @@
 }
 
 .containerSingle{
-    background-image: url(../Img/backgroundImg.png);
+    background-image: url(../../Images/BackgroundImages/backgroundImg.png);
     width: 100%;
     background-size: 100% 90%; 
     background-repeat: no-repeat; 
@@ -92,40 +92,39 @@
 
 
 .card-img-Colombo{
-    background-image: url(../Img/Colombo.jpg);
+    background-image: url(../../Images/CardImages/Colombo.jpg);
     background-size: cover;
     background-position:center;
 }
 .card-img-Tokyo{
-    background-image: url(../Img/Tokyo.jpg);
+    background-image: url(../../Images/CardImages/Tokyo.jpg);
     background-size: cover;
     background-position:center;
 }.card-img-Liverpool{
-    background-image: url(../Img/Liverpool.jpg);
+    background-image: url(../../Images/CardImages/Liverpool.jpg);
     background-size: cover;
     background-position:center;
 }.card-img-Paris{
-    background-image: url(../Img/Paris.jpg);
+    background-image: url(../../Images/CardImages/Paris.jpg);
     background-size: cover;
     background-position:center;
 }.card-img-Sydney{
-    background-image: url(../Img/Sydney.jpg);
+    background-image: url(../../Images/CardImages/Sydney.jpg);
     background-size: cover;
     background-position:center;
 }.card-img-Boston{
-    background-image: url(../Img/Boston.jpg);
+    background-image: url(../../Images/CardImages/Boston.jpg);
     background-size: cover;
     background-position:center;
 }.card-img-Shanghai{
-    background-image: url(../Img/Shanghai.jpg);
+    background-image: url(../../Images/CardImages/Shanghai.jpg);
     background-size: cover;
     background-position:center;
 }.card-img-Oslo{
-    background-image: url(../Img/Oslo.jpg);
+    background-image: url(../../Images/CardImages/Oslo.jpg);
     background-size: cover;
     background-position:center;
 }
-
 
 
 /*media quries  */
