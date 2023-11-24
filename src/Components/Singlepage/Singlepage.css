@@ -1,7 +1,7 @@
 .AppSingle{
     background-color: #1e2027;
     min-width: 200px;  /* minimum width of the application page can have */
-    min-height: 95vh;  
+    min-height: 100vh;  
 }
 
 .containerSingle{
