@@ -36,7 +36,7 @@
 
 .container{
    padding: 3% 8% 3% 8%;
-    max-width: 2000px;
+   max-width: 2000px;
 }
 
 .line{
@@ -337,8 +337,6 @@ h2{
 }
 
 
-
-
 @media (min-width:1031px) and (max-width:1550px) {
 
     .container{
@@ -393,15 +391,37 @@ h2{
 }
 
 
-@media (min-width:2000px) {
+@media (min-width:2000px) and (max-width:2900px) {
 
     .temp-style{
         font-size: 60px;
     }
-    
-    
+       
     h2{
         font-size: 35px;
+ 
+    }
+
+    .fotter-style{
+        font-size:small;
+    }
+
+}
+
+
+@media (min-width:2900px) and (max-width:5500px) {
+
+    .container{
+ 
+        max-width: 3000px;
+     }
+
+    .temp-style{
+        font-size: 70px;
+    }
+       
+    h2{
+        font-size: 45px;
  
     }
 
@@ -412,4 +432,31 @@ h2{
 }
 
 
+@media (min-width:5500px) {
+
+    .container{
+ 
+        max-width: 4000px;
+     }
+     
+
+    .temp-style{
+        font-size: 85px;
+    }
+    
+    
+    h2{
+        font-size: 60px;
+ 
+    }
+
+    .fotter-style{
+        font-size:18px;
+    }
+
+    .container-bg{
+     
+        background-size: 100%  80%; 
+    } 
+}
 

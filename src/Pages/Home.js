@@ -2,8 +2,8 @@ import React from 'react'
 import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import './Home.css'
-import {CASH_EXPIRE,KM_FACTOR,MSECONDS_FACTOR,TIME_THRESHOLD,MONTHS_YEAR,CARD_IMGS} from '../Constants/constants.js';
-import { getWeatherApiUrl, getWeatherIconUrl } from '../Api/APIHelper.js';
+import {CASH_EXPIRE,KM_FACTOR,MSECONDS_FACTOR,TIME_THRESHOLD,MONTHS_YEAR,CARD_IMGS,CITYCODEARRY} from '../Constants/constants.js';
+import { getWeatherApiUrl, getWeatherIconUrl,fetchWeatherData } from '../Api/APIHelper.js';
 import Header from '../Components/Header/Header';
 import Footer from '../Components/Footer/Footer';
 import Card from 'react-bootstrap/Card';
@@ -13,7 +13,6 @@ import CloseButton from 'react-bootstrap/CloseButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 
-
 export default function Home() {
    
     const [cardData, setCardData] = useState([]);
@@ -22,29 +21,17 @@ export default function Home() {
     useEffect(() => {
 
         setCardData([]); // Clear existing cards by resetting the cardData state to an empty array
-
-        // This function will run when the component is first loaded
-        const sample = require('../Data/cities.json'); //load the city data from json file
-        const smapleList = sample.List; //get it as a list
-        var cityCodeArry = []; //city Id containing array
     
-            
-        for (var i=0;i<smapleList.length;i++){
-            var cityCode = parseInt(smapleList[i].CityCode); //get each city Id as a int
-            cityCodeArry.push(cityCode);
-        
-        }
-        
         //call the API accordinto  given city id and get the result
         function weatherBalloon(cityID,url) {
             // Check if cached data exists
-            const cachedData = localStorage.getItem(`weatherData_${cityID}`);
+            var cachedData = localStorage.getItem(`weatherData_${cityID}`);
             
             if (cachedData) {
               
               // If cached data exists and is not expired
-              const parsedData = JSON.parse(cachedData);
-              const currentTime = new Date().getTime();
+              var parsedData = JSON.parse(cachedData);
+              var currentTime = new Date().getTime();
               
               //checks the cahche is old than 5 minitus (300000 ms)
               if (currentTime - parsedData.timestamp < CASH_EXPIRE) {
@@ -56,23 +43,7 @@ export default function Home() {
             
             // if cache no or more than 5 mins then call api and save as a cache
             console.log("No valied cache data, need to call API")
-            fetch(url)  
-            .then(function(resp) { return resp.json() }) // Convert data to json
-            .then(function (data) {
-                const timestamp = new Date().getTime();
-                const cachedData = {
-                  timestamp: timestamp,
-                  data: data,
-                };
-                // Store data in cache
-                localStorage.setItem('weatherData_' + cityID, JSON.stringify(cachedData));
-      
-                updateUI(data); //update the html page using data
-            })
-
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+            fetchWeatherData(url,cityID,updateUI)
         }
 
         function updateUI(data) {
@@ -94,7 +65,6 @@ export default function Home() {
             var sunriseValue = parseInt(data['sys']['sunrise']);
             var sunsetValue = parseInt(data['sys']['sunset']);  
 
-
             //sunrice time
             var myTimeSr = new Date(sunriseValue * MSECONDS_FACTOR); 
             //give the date and time as the required form
@@ -104,7 +74,6 @@ export default function Home() {
             var newHoursSr = hoursSr % TIME_THRESHOLD || TIME_THRESHOLD; // Convert 0 to 12
             var newTimeSr = newHoursSr  + '.'+ minutesSr + amPmSr;
 
-
             //sunset time
             var myTimeSs = new Date(sunsetValue * MSECONDS_FACTOR); 
             //give the date and time as the required form
@@ -113,7 +82,6 @@ export default function Home() {
             var amPmSs = hoursSs >= TIME_THRESHOLD ? 'pm' : 'am';
             var newHoursSs = hoursSs % TIME_THRESHOLD || TIME_THRESHOLD; // Convert 0 to 12
             var newTimeSs = newHoursSs  + '.'+ minutesSs + amPmSs;
-
 
             // Create a Date object using the Unix timestamp
             var myTime = new Date(dtValue * MSECONDS_FACTOR);
@@ -158,10 +126,10 @@ export default function Home() {
          
         }  
 
-        //run the api call for all city IDs in cityCodeArry  
-        for(var j=0;j<cityCodeArry.length;j++){
-            var cityId = cityCodeArry[j];
-            const apiUrl = getWeatherApiUrl(cityId);
+        //run the api call for all city IDs in CITYCODEARRY  
+        for(var j=0;j<CITYCODEARRY.length;j++){
+            var cityId = CITYCODEARRY[j];
+            var apiUrl = getWeatherApiUrl(cityId);
             weatherBalloon(cityId,apiUrl);     
         }   
         
@@ -171,7 +139,6 @@ export default function Home() {
         // Navigate to SinglePage and pass the data as state
         navigate(`/single/${data.cname}`, { state: data });
     };
-
 
     return (
         <div>

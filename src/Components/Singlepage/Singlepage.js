@@ -13,9 +13,9 @@ import Button from 'react-bootstrap/Button';
 
 
 export default function Singlepage() {
-  const location = useLocation();
-  const data = location.state; //get data form home page
-  const navigate = useNavigate(); //navigete to home page
+  var location = useLocation();
+  var data = location.state; //get data form home page
+  var navigate = useNavigate(); //navigete to home page
   
   return (
     <div>

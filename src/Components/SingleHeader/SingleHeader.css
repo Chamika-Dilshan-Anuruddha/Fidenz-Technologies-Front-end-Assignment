@@ -108,3 +108,27 @@
     }
 }
 
+
+
+@media (min-width: 4000px) {
+
+    .sicon {
+        height: 80px;
+        margin-right: 40px;
+        margin-top: 10px;
+       
+    }
+      
+    .sweatherTopic {
+        font-size: 60px;       
+    }
+}
+
+
+@media (min-width: 7000px) {
+
+    .sicon {
+        margin-top: 25px;
+       
+    }
+}

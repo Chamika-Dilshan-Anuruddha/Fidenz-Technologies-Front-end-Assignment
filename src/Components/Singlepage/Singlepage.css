@@ -251,4 +251,9 @@
 }
 
 
-
+@media (min-width:5000px){
+    .single-card{
+        height: 500px; 
+    
+    }
+}
