@@ -1,3 +1,7 @@
+export const API_KEY =  process.env.REACT_APP_API_KEY;
+export const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
+export const IMG_URL = 'https://openweathermap.org/img/wn/';
+
 export const CASH_EXPIRE = 300000;
 export const KM_FACTOR = 1000;
 export const MSECONDS_FACTOR = 1000;
@@ -11,7 +15,6 @@ for (var i=0;i<SAMPLELST.length;i++){
      cityCodeArry.push(cityCode);
  
 }
-
 export const CITYCODEARRY  = cityCodeArry;
 export const MONTHS_YEAR = [
     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',

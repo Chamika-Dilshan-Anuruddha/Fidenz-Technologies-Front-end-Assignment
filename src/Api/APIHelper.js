@@ -1,6 +1,4 @@
-const API_KEY =  process.env.REACT_APP_API_KEY;
-const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
-const IMG_URL = 'https://openweathermap.org/img/wn/';
+import {API_KEY,IMG_URL,BASE_URL} from '../Constants/constants.js'
 
 // Function to construct the complete API URL for fetching weather data
 export const getWeatherApiUrl = (cityID) => {
@@ -12,7 +10,7 @@ export const getWeatherIconUrl = (imgName) => {
   return `${IMG_URL}${imgName}.png`;
 };
 
-
+//Function to call api and fetch weather data
 export const fetchWeatherData = (url,cityID,updateUI) => {
   fetch(url)  
   .then(function(resp) { return resp.json() }) // Convert data to json
