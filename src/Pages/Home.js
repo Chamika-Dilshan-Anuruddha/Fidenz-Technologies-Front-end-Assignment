@@ -1,210 +1,105 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import './Home.css'
-import {CASH_EXPIRE,KM_FACTOR,MSECONDS_FACTOR,TIME_THRESHOLD,MONTHS_YEAR,CARD_IMGS,CITYCODEARRY} from '../Constants/constants.js';
+import {CASH_EXPIRE, CASH_NAME_PREFIX, KM_FACTOR, CITYDATALIST, PRESSURE_UNIT, VISIBILITY_UNIT, WINDSPEED_UNIT, WINDSPEED_DIRECTION_UNIT, SINGLEPAGE_PATH} from '../Constants/constants.js';
 import { getWeatherApiUrl, getWeatherIconUrl,fetchWeatherData } from '../Api/APIHelper.js';
+import { unixToNormalTime, unixToNormalWithDate, lastTwoWords } from '../Utils/dataCleanHelper.js';
 import Header from '../Components/Header/Header';
 import Footer from '../Components/Footer/Footer';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import CloseButton from 'react-bootstrap/CloseButton';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
+import HomeCard from '../Components/Cards/HomeCard.js';
+import './Home.css'
 
 export default function Home() {
-   
-    const [cardData, setCardData] = useState([]);
-    const navigate = useNavigate();
-       
-    useEffect(() => {
+  const [cardData, setCardData] = useState([]);
+  const navigate = useNavigate();
 
-        setCardData([]); // Clear existing cards by resetting the cardData state to an empty array
-    
-        //call the API accordinto  given city id and get the result
-        function weatherBalloon(cityID,url) {
-            // Check if cached data exists
-            var cachedData = localStorage.getItem(`weatherData_${cityID}`);
-            
-            if (cachedData) {
-              
-              // If cached data exists and is not expired
-              var parsedData = JSON.parse(cachedData);
-              var currentTime = new Date().getTime();
-              
-              //checks the cahche is old than 5 minitus (300000 ms)
-              if (currentTime - parsedData.timestamp < CASH_EXPIRE) {
-                updateUI(parsedData.data);
-                console.log('Cached data exist and updated:', parsedData)
-                return;
-              }
-            }
-            
-            // if cache no or more than 5 mins then call api and save as a cache
-            console.log("No valied cache data, need to call API")
-            fetchWeatherData(url,cityID,updateUI)
+  useEffect(() => {
+    setCardData([]); // Clear existing cards by resetting the cardData state to an empty array
+
+    function weatherBalloon(cityID, url) {
+      //call the API according to given city id and get the result
+      var cachedData = localStorage.getItem(`${CASH_NAME_PREFIX}${cityID}`);
+
+      if (cachedData) {
+        // If cached data exists and is not expired
+        var parsedData = JSON.parse(cachedData);
+        var currentTime = new Date().getTime();
+
+        if (currentTime - parsedData.timestamp < CASH_EXPIRE) {
+          updateUI(parsedData.data);
+          //console.log("Cached data exist and updated");
+          return;
         }
+      }
+      //console.log("No valied cache data, need to call API");
+      fetchWeatherData(url, updateUI);
+    }
 
-        function updateUI(data) {
-      
-            // get the data form promise
-            var nameValue = data['name'];
-            var dtValue = data['dt']; // Unix timestamp
-            var descValue = data['weather'][0]['description'];
-            var tempValue = parseInt(data['main']['temp']); 
-            var tempMinValue = parseInt(data['main']['temp_min']);
-            var tempMaxValue = parseInt(data['main']['temp_max']); 
-            var countryData   = data['sys']['country'];
-            var icondata = data['weather'][0]['icon'];
-            var imgUrl = getWeatherIconUrl(icondata.toString());
-            var pressureValue = parseInt(data['main']['pressure']) + " hPa";  
-            var humidityValue = parseInt(data['main']['humidity']);  
-            var visibilityValue = (parseFloat(data['visibility'])/KM_FACTOR).toFixed(1) + ' km'; // get upto first decimal point  
-            var degreeValue = parseInt(data['wind']['speed']) + ' m/s  ' + parseInt(data['wind']['deg']) +  ' Degree' ;  
-            var sunriseValue = parseInt(data['sys']['sunrise']);
-            var sunsetValue = parseInt(data['sys']['sunset']);  
+    function updateUI(data) {
+      //update the object  that need to pass to singlepage.js
+      setCardData((prevDataObjects) => [
+        ...prevDataObjects,
+        {
+          cname: data["name"],
+          ccountry: data["sys"]["country"],
+          curl: getWeatherIconUrl(data["weather"][0]["icon"].toString()),
+          cdesc: lastTwoWords(data["weather"][0]["description"]),
+          cdt: unixToNormalWithDate(data["dt"]),
+          ctemp: parseInt(data["main"]["temp"]),
+          cminTemperature: parseInt(data["main"]["temp_min"]),
+          cmaxTemperature: parseInt(data["main"]["temp_max"]),
+          cpressure: parseInt(data["main"]["pressure"]) + PRESSURE_UNIT,
+          chumidity: parseInt(data["main"]["humidity"]),
+          cvisibility:
+            (parseFloat(data["visibility"]) / KM_FACTOR).toFixed(1) +
+            VISIBILITY_UNIT, // get upto first decimal point  ,
+          cdegree:
+            parseInt(data["wind"]["speed"]) +
+            WINDSPEED_UNIT +
+            parseInt(data["wind"]["deg"]) +
+            WINDSPEED_DIRECTION_UNIT,
+          csunrise: unixToNormalTime(parseInt(data["sys"]["sunrise"])),
+          csunset: unixToNormalTime(parseInt(data["sys"]["sunset"])),
+        },
+      ]);
+    }
 
-            //sunrice time
-            var myTimeSr = new Date(sunriseValue * MSECONDS_FACTOR); 
-            //give the date and time as the required form
-            var hoursSr = myTimeSr.getHours();
-            var minutesSr = myTimeSr.getMinutes();
-            var amPmSr = hoursSr >= TIME_THRESHOLD ? 'pm' : 'am';
-            var newHoursSr = hoursSr % TIME_THRESHOLD || TIME_THRESHOLD; // Convert 0 to 12
-            var newTimeSr = newHoursSr  + '.'+ minutesSr + amPmSr;
+    //run the api call for all city IDs in cityDataList
+    for (var j = 0; j < CITYDATALIST.length; j++) {
+      var cityId = parseInt(CITYDATALIST[j].CityCode);
+      var apiUrl = getWeatherApiUrl(cityId);
+      weatherBalloon(cityId, apiUrl);
+    }
+  }, []);
 
-            //sunset time
-            var myTimeSs = new Date(sunsetValue * MSECONDS_FACTOR); 
-            //give the date and time as the required form
-            var hoursSs = myTimeSs.getHours();
-            var minutesSs = myTimeSs.getMinutes();
-            var amPmSs = hoursSs >= TIME_THRESHOLD ? 'pm' : 'am';
-            var newHoursSs = hoursSs % TIME_THRESHOLD || TIME_THRESHOLD; // Convert 0 to 12
-            var newTimeSs = newHoursSs  + '.'+ minutesSs + amPmSs;
+  const handleCardClick = (data) => {
+    // Navigate to SinglePage and pass the data as state
+    navigate(`${SINGLEPAGE_PATH}${data.cname}`, { state: data });
+  };
 
-            // Create a Date object using the Unix timestamp
-            var myTime = new Date(dtValue * MSECONDS_FACTOR);
-            //give the date and time as the required form
-            var hours = myTime.getHours();
-            var minutes = myTime.getMinutes();
-            var amPm = hours >= TIME_THRESHOLD ? 'pm' : 'am';
-            var newHours = hours % TIME_THRESHOLD || TIME_THRESHOLD; // Convert 0 to 12
-            var monthName = MONTHS_YEAR[myTime.getMonth()];
-            var day = myTime.getDate();
-            var newDt = newHours+'.'+ minutes + amPm +', '+ monthName +' ' + day;
-
-            // get only last two words from the description
-            var splitDescription = descValue.split(' ');
-            var lengthVec = splitDescription.length;
-            if(lengthVec >2){
-                var towWordsArr = splitDescription.slice(lengthVec-2);
-                descValue = towWordsArr.join(' ');  
-            }
-
-            //update the object  that need to pass to singlepage.js 
-            setCardData((prevDataObjects) => [
-                ...prevDataObjects,
-               {
-                  cname: nameValue,
-                  ccountry:countryData,
-                  curl:imgUrl,
-                  cdesc: descValue,
-                  cdt: newDt,
-                  ctemp: tempValue,
-                  cminTemperature : tempMinValue,
-                  cmaxTemperature : tempMaxValue,
-                  cpressure: pressureValue,
-                  chumidity: humidityValue, 
-                  cvisibility: visibilityValue,
-                  cdegree: degreeValue,
-                  csunrise: newTimeSr,
-                  csunset: newTimeSs
-                  
-               },
-           ]);
-         
-        }  
-
-        //run the api call for all city IDs in CITYCODEARRY  
-        for(var j=0;j<CITYCODEARRY.length;j++){
-            var cityId = CITYCODEARRY[j];
-            var apiUrl = getWeatherApiUrl(cityId);
-            weatherBalloon(cityId,apiUrl);     
-        }   
-        
-    },[]);
-
-    const handleCardClick = (data) => {
-        // Navigate to SinglePage and pass the data as state
-        navigate(`/single/${data.cname}`, { state: data });
-    };
-
-    return (
-        <div>
-            <div className='App'>
-
-                <div className='container-bg'>
-
-                    <Header />
-
-                    <div className="main-container">
-
-                        <div className="container">
-
-                                    <Row xs={1} md={3} className="g-4">
-                                    {cardData.map((data, idx) => (
-                                        <Col key={idx}>
-                                        
-                                         <Card className={`card-style ${CARD_IMGS[idx % CARD_IMGS.length]}`} style={{ borderRadius: '15px'}} onClick={() => handleCardClick(data)}>
-                                            
-                                            <Card.Body>
-                                            <Row className='first-raw-style'>
-                                                <Col className="inside-text first-col-container"> 
-                                                <h2>{data.cname},{data.ccountry}</h2>
-                                                <p className='dt-style'>{data.cdt}</p>
-                                                <img src={data.curl} alt='weather icon' />
-                                                <p>{data.cdesc}</p>
-                                                </Col>
-                                                <Col className="inside-text second-col-container">
-                                                <CloseButton variant='white' className='close-button' />
-                                                <h1 className='temp-style'>{data.ctemp} °C</h1><br />
-                                                <p>Temp Min: {data.cminTemperature} °C</p>
-                                                <p>Temp Max: {data.cmaxTemperature} °C</p>
-                                                </Col>
-                                            </Row> 
-                                            </Card.Body>
-
-                                            <Card.Footer className="fotter-style" style={{ borderRadius: '15px', borderBottom:'2px solid white' }}>
-                                            <Row>
-                                                <Col className="line">
-                                                <p>Pressure: {data.cpressure}</p>
-                                                <p>Humidity: {data.chumidity}%</p>
-                                                <p>Visibility: {data.cvisibility}</p>
-                                                </Col>
-                                                <Col className="line">
-                                                <FontAwesomeIcon icon={faLocationArrow} style={{color: "#ffffff", width:'100%', height:'30px'}} />
-                                                <br />
-                                                <br />
-                                                <p style={{textAlign:'center'}}>{data.cdegree}</p>
-                                                </Col>
-                                                <Col>
-                                                <p>Sunrise: {data.csunrise}</p>
-                                                <p>Sunset: {data.csunset}</p>
-                                                </Col>
-                                            </Row>
-                                            </Card.Footer>
-                                          
-                                        </Card>
-                                       
-                                        </Col>
-                                    ))}
-                                    </Row>
-                        </div>
-                    </div>                   
-                </div>               
+  return (
+    <div>
+      <div className="App">
+        <div className="container-bg">
+          <Header />
+          <div className="main-container">
+            <div className="container">
+              <Row xs={1} md={2} className="g-4">
+                {cardData.map((data, idx) => (
+                  <HomeCard
+                    data={data}
+                    id={idx}
+                    key={idx}
+                    onClick={handleCardClick}
+                  /> //here I used key={idx} for prevent a warning in the console
+                ))}
+              </Row>
             </div>
-            <Footer />
+          </div>
         </div>
-    )
+      </div>
+      <Footer />
+    </div>
+  );
 }

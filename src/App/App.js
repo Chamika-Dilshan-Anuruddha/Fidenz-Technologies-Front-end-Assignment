@@ -1,6 +1,7 @@
-import Home from '../Pages/Home';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Singlepage from '../Components/Singlepage/Singlepage';
+import Home from "../Pages/Home";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Singlepage from "../Components/Singlepage/Singlepage";
+import { SINGLEPAGE_PATH } from "../Constants/constants";
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       <div>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/single/:idx" element={<Singlepage />} />
+          <Route path={`${SINGLEPAGE_PATH}:idx`} element={<Singlepage />} />
         </Routes>
       </div>
     </Router>

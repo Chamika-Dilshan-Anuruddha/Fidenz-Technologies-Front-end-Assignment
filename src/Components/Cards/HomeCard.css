@@ -1,0 +1,316 @@
+.inside-text {
+  text-align: center;
+  color: white;
+}
+
+.first-col-container {
+  margin-top: 3%;
+}
+
+.close-button {
+  position: relative;
+  left: 45%;
+  top: -3%;
+}
+
+h1 {
+  padding-top: 3%;
+  font-size: 50px;
+  white-space: nowrap;
+}
+
+h2 {
+  white-space: nowrap;
+}
+
+.fotter-style {
+  background-color: #383b47;
+  color: white;
+  font-size: xx-small;
+  padding: 5%;
+}
+
+.line {
+  border-right: 1px solid white;
+}
+
+.card-style {
+  cursor: pointer;
+  font-size: medium;
+}
+
+.card-color-1 {
+  background-image: url(../../Images/CardImages/Colombo.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.card-color-2 {
+  background-image: url(../../Images/CardImages/Tokyo.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.card-color-3 {
+  background-image: url(../../Images/CardImages/Liverpool.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.card-color-4 {
+  background-image: url(../../Images/CardImages/Paris.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.card-color-5 {
+  background-image: url(../../Images/CardImages/Sydney.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.card-color-6 {
+  background-image: url(../../Images/CardImages/Boston.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.card-color-7 {
+  background-image: url(../../Images/CardImages/Shanghai.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.card-color-8 {
+  background-image: url(../../Images/CardImages/Oslo.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+/*media quries */
+
+@media (max-width: 297px) {
+  .fotter-style {
+    font-size: 4px;
+  }
+}
+
+@media (min-width: 297px) and (max-width: 362px) {
+  .fotter-style {
+    font-size: 7px;
+  }
+}
+
+@media (max-width: 258px) {
+  .temp-style {
+    font-size: 38px;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  .close-button {
+    top: -103%;
+    left: 50%;
+  }
+
+  .first-col-container {
+    margin-top: 5%;
+  }
+}
+
+@media (min-width: 258px) and (max-width: 373px) {
+  .card-style {
+    font-size: x-small;
+  }
+
+  .temp-style {
+    font-size: 25px;
+  }
+
+  h2 {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 373px) and (max-width: 493px) {
+  .temp-style {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .fotter-style {
+    font-size: 9px;
+  }
+}
+
+@media (min-width: 493px) and (max-width: 768px) {
+  .temp-style {
+    font-size: 40px;
+  }
+
+  .card-style {
+    font-size: large;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  .fotter-style {
+    font-size: small;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 962px) {
+  .card-style {
+    font-size: x-small;
+  }
+
+  .temp-style {
+    font-size: 30px;
+  }
+
+  .first-raw-style {
+    white-space: nowrap;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .close-button {
+    left: 48%;
+  }
+
+  .first-col-container {
+    margin-top: 8%;
+  }
+
+  .fotter-style {
+    font-size: 8px;
+  }
+}
+
+@media (min-width: 962px) and (max-width: 1031px) {
+  .first-raw-style {
+    white-space: nowrap;
+  }
+
+  .temp-style {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 25px;
+  }
+
+  .close-button {
+    left: 48%;
+  }
+
+  .first-col-container {
+    margin-top: 8%;
+  }
+
+  .fotter-style {
+    font-size: 9px;
+  }
+}
+
+@media (min-width: 1031px) and (max-width: 1550px) {
+  .card-style {
+    font-size: medium;
+  }
+
+  .temp-style {
+    font-size: 45px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  .fotter-style {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 1550px) and (max-width: 2000px) {
+  .card-style {
+    font-size: medium;
+  }
+
+  .temp-style {
+    font-size: 47px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  .fotter-style {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 2000px) and (max-width: 2900px) {
+  .temp-style {
+    font-size: 58px;
+  }
+
+  h2 {
+    font-size: 38px;
+  }
+
+  .fotter-style {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 2900px) and (max-width: 5500px) {
+  .card-style {
+    font-size: large;
+  }
+
+  .temp-style {
+    font-size: 80px;
+  }
+
+  h2 {
+    font-size: 52px;
+  }
+
+  .fotter-style {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 5500px) and (max-width: 8000px) {
+  .card-style {
+    font-size: x-large;
+  }
+
+  .temp-style {
+    font-size: 100px;
+  }
+
+  h2 {
+    font-size: 80px;
+  }
+
+  .fotter-style {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 8000px) {
+  .temp-style {
+    font-size: 100px;
+  }
+
+  h2 {
+    font-size: 85px;
+  }
+
+  .fotter-style {
+    font-size: 25px;
+  }
+}
